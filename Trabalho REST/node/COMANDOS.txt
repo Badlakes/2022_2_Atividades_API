@@ -1,0 +1,13 @@
+npm init
+npm install –g nodemon
+npm install –save knex
+npm install –save mysql
+npm install restify
+npm install restify-errors
+
+auxiliar requisição:
+cors
+ajax
+
+pasta htdocs no xampp deve ter: index.html e script
+(O SCRIPT que vai fazer a requisição para o server.js[node] fazer as alterações no banco)

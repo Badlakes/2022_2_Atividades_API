@@ -1,0 +1,21 @@
+{
+  "name": "projetoteste",
+  "version": "1.0.0",
+  "description": "API de loginpog",
+  "main": "server.js",
+  "dependencies": {
+    "bootstrap": "^3.4.1",
+    "knex": "^2.3.0",
+    "mysql": "^2.18.1",
+    "restify": "^8.6.1",
+    "restify-cors-middleware2": "^2.1.2",
+    "restify-errors": "^8.0.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Michael mauricio de Sena Pacheco",
+  "license": "ISC"
+}
