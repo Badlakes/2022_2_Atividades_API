@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+    <title>Desafio Auth2 - Facebook</title>
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '475055981400323',
+          cookie     : true,
+          xfbml      : true,
+          version    : 'v6.0'
+        });
+
+        FB.getLoginStatus(function(response) {
+          if (response.status === 'connected') {
+            displayWelcomeMessage();
+          }
+        });
+      };
+
+      (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+
+      function displayWelcomeMessage() {
+        FB.api('/me', function(response) {
+          document.getElementById('welcome-message').innerHTML =
+            'Welcome, ' + response.name + '!<br><br>'
+        });
+      }
+    </script>
+  </head>
+  <body>
+
+    <div class="container">
+      <div class="row">
+        <h1>Usando Auth2 para login e logout Facebook</h1>
+      </div>
+
+      <div class="row">
+          <div class="col">
+            <fb:login-button
+            scope="public_profile,email"
+            onlogin="checkLoginState();">
+            </fb:login-button>
+            <button onclick="logout();">Logout</button>
+            <div id="welcome-message"></div>
+          </div>
+      </div>
+      </div>
+    </div>
+
+<script>
+  // Called when the user clicks the login button
+  function checkLoginState() {
+    FB.getLoginStatus(function(response) {
+      if (response.status === 'connected') {
+        // If the user is logged in, display the welcome message
+        displayWelcomeMessage();
+      }
+    });
+  }
+
+  // Called when the user clicks the logout button
+  function logout() {
+    FB.logout(function(response) {
+      // Refresh the page to remove the welcome message
+      window.location.reload();
+    });
+  }
+</script>
+
+</body>
+</html>
